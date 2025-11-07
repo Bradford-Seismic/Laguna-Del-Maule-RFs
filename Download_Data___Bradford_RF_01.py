@@ -113,8 +113,8 @@ warnings.simplefilter('ignore', category = FutureWarning)
 
 # 'active_dir' will be our home folder, and will navigate to everywhere we need
 # pull data based on its relative location to 'active_dir'
-# active_dir = '/tango/bradford/User_Test_Folder/SCRIPTING'
-active_dir = '/tango/bradford/Laguna_Del_Maule/SCRIPTING/'
+
+active_dir = ''
 
 
 
@@ -610,6 +610,7 @@ for i in unique_stations:
 
         print("\r", end="")
         print("Downloading... {:.4f}% , Phase: {}, Reject: {} ".format(k/len(unique_stations)*100, num_phase,num_reject), end="")
+
 
 
 
