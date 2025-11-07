@@ -54,16 +54,6 @@ region = 'LDM'
 
 
 
-
-# active_dir = 'C:/Users/7418888/Documents/TANGO/Laguna_Del_Maule/SCRIPTING'
-active_dir = '/tango/bradford/Laguna_Del_Maule/SCRIPTING'
-
-os.chdir(active_dir)
-
-region = 'LDM'
-
-
-
 joints = np.loadtxt(
     '../DATA/MAPPING/{}_Line3.txt'.format(region), delimiter=',')
 
