@@ -29,7 +29,7 @@ import subprocess
 warnings.simplefilter('ignore', category = UserWarning)
 
 
-active_dir = '/tango/bradford/Laguna_Del_Maule/SCRIPTING/'
+active_dir = ''
 output_dir = '../DATA/'
 os.chdir(active_dir)
 
