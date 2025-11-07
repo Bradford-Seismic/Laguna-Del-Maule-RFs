@@ -56,7 +56,7 @@ warnings.simplefilter('ignore', category = FutureWarning)
     scipts in order to supplement their own work. For instance, if you like how one of our
     figures are designed using PyGMT, please check it out here so you can understand that process.
 
-    But please be sure to give credit where it is do.
+    But please be sure to give credit where it is due.
 
 
 
@@ -610,6 +610,7 @@ for i in unique_stations:
 
         print("\r", end="")
         print("Downloading... {:.4f}% , Phase: {}, Reject: {} ".format(k/len(unique_stations)*100, num_phase,num_reject), end="")
+
 
 
 
