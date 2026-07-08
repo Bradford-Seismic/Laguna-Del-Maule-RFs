@@ -44,7 +44,7 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import matplotlib.colors
 
 
-active_dir = ''
+active_dir = './'
 
 os.chdir(active_dir)
 

@@ -41,14 +41,12 @@ warnings.simplefilter('ignore', category = UserWarning)
 warnings.simplefilter('ignore', category = FutureWarning)
 
 
-active_dir = ''
+active_dir = './'
 
 
 
 os.chdir(active_dir)
 
-
-model = TauPyModel(model="iasp91")
 
 
 

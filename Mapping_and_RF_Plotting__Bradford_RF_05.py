@@ -42,7 +42,7 @@ warnings.simplefilter('ignore', category = UserWarning)
 warnings.simplefilter('ignore', category = FutureWarning)
 
 
-active_dir = ''
+active_dir = './'
 
 
 
@@ -775,7 +775,7 @@ if save_figs:
 
 
 
-save_figs = 1
+save_figs = 0
 EQ_fig_name = 'F2_EQ+Rose_Region-{}.png'.format(region)
 
 

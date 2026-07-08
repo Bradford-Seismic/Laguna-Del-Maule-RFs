@@ -35,7 +35,7 @@ warnings.simplefilter('ignore', category = UserWarning)
 
 
 
-active_dir = ''
+active_dir = './'
 output_dir = '../DATA/'
 
 

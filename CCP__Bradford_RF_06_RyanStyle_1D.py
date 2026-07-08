@@ -35,7 +35,7 @@ from scipy.spatial import KDTree
 # from sklearn.neighbors import KDTree
 
 from scipy.stats import binned_statistic_2d
-from scipy.stats import Normal
+import scipy.stats
 import concurrent.futures
 
 
@@ -46,12 +46,12 @@ warnings.simplefilter('ignore', category = UserWarning)
 warnings.simplefilter('ignore', category = FutureWarning)
 
 
-active_dir = ''
+active_dir = './'
 os.chdir(active_dir)
 
 
 
-v_model_1D = 'velmodel_tango-mod.csv'
+v_model_1D = 'velmodel_zr-mod.csv'
 # v_model_1D = 'IASP91_mod_40km.csv'
 
 region = 'LDM'
@@ -560,9 +560,19 @@ trace_id = np.arange(0, len(st), 1)
 with concurrent.futures.ProcessPoolExecutor(max_workers = 5) as executor:
     pierce_traces = executor.map(Trace_Pierce_Point, trace_id)
 
+    pierce_map = np.array([0,0,0,0])
     for ray in pierce_traces:
         st[ray[0]].pierce = {'x': ray[1], 'y': ray[2], 'z': ray[3], 'seis': ray[4]}
 
+
+        # also, record xyz-f position of ray and amplitude
+        ray_dat = np.c_[np.round(west + ray[1]/dd, 4), np.round(south + km_to_latitude(ray[2]), 4), ray[3], np.round(ray[4], 4)]
+        pierce_map = np.vstack((pierce_map, ray_dat))
+
+# save pierce map as csv
+pierce_map = pierce_map[1:len(pierce_map)]
+pierce_df = pd.DataFrame(data = pierce_map, columns = ['longitude', 'latitude', 'depth', 'amplitude'])
+pierce_df.to_csv('../DATA/MAPPING/PiercePoints.csv', index = False)
 
 
 # ## Brute Force Solve
@@ -933,7 +943,7 @@ def Gaussian_Distance_Weighted(depth):
             # list for recording trace_ids that contribute to bin
 
 
-            gauss = Normal(mu = 0, sigma = gauss_width)
+            gauss = scipy.stats.norm(0, gauss_width)
             weights = gauss.pdf(dists)
 
 
@@ -1014,7 +1024,7 @@ model = xr.Dataset(data_vars = {'Amplitude':(['depth',  'latitude', 'longitude']
                                 'BAZ_STD':(['depth',  'latitude', 'longitude'], np.swapaxes(BAZ_STD.T, 2,1)),
 
                                 },
-                          coords = {'depth': -z, 'longitude': lon, 'latitude': lat},
+                          coords = {  'latitude': lat, 'longitude': lon, 'depth': -z,},
                           attrs={'Velocity Model': v_model_1D,
                                  'description': 'CCP Stack of {} with Gaussian Weighted Distance, with using algorithm of Ryan Porter (NAU)'.format(region),
                                  'Node Spacing': bin_sz, 'Bin Min Smoothing': bin_sm,'Bin Gauss': bin_gauss,
@@ -1037,7 +1047,7 @@ model_encoding = {'depth': {'dtype': 'float32', '_FillValue': None },
 
 
 
-model.to_netcdf('../DATA/MAPPING/nc_models/CCP_{}_G-{}_GDW_VELEST-1X-mod.nc'.format(region, G), encoding = model_encoding)
+model.to_netcdf('../DATA/MAPPING/nc_models/CCP_{}_G-{}_GDW_VELEST-ZR-mod_RE.nc'.format(region, G), encoding = model_encoding)
 
 
 

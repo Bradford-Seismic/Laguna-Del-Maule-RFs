@@ -26,46 +26,6 @@ warnings.simplefilter('ignore', category = FutureWarning)
 
 
 
-"""
-                    Usage Notes
-    The code written here is by me, Jim Bradford,
-    for the purposes of preforming the necessary procedural and analytical assessment
-    for the article: TBD
-    DOI: TBD
-
-
-    This is first of a series of Scripts (labeled accordingly) that should be performed
-    in sequential order for replicating the results and findings of the specified article
-
-    I can not gaurantee that later works by myself or other workers will use precisely
-    the same form or exact parameters, so please do your do diligence and check the work
-    to make an informed decision if you wish to use this model
-
-    Furthermore, I do not intend to update these scripts post-publication, as this is built specifically
-    to address this particular work. If you are using this script, and you run into issues
-    that are due to its compilation and execution, I cannot help with that.
-
-    That said, if you find something that is procedurally wrong, PLEASE LET ME KNOW,
-    as that is a scientific problem, and affects how we interpret the Earth, which is something
-    I care much more about.
-
-
-
-    I would love to see these scripts used as an education material and inspiration for other work.
-    Don't let this be a black box object. I want users to be able to take bits and pieces of these
-    scipts in order to supplement their own work. For instance, if you like how one of our
-    figures are designed using PyGMT, please check it out here so you can understand that process.
-
-    But please be sure to give credit where it is due.
-
-
-
-    Enjoy,
-    -Jim
-
-"""
-
-
 
 
 
@@ -114,8 +74,7 @@ warnings.simplefilter('ignore', category = FutureWarning)
 # 'active_dir' will be our home folder, and will navigate to everywhere we need
 # pull data based on its relative location to 'active_dir'
 
-active_dir = ''
-
+active_dir = './'
 
 
 
